@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	*{
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.keyword{
+		width: 350px;
+		border: 1px solid black;
+		margin:auto;
+		display: none;
+	}
+	.keyword ul li:hover{
+		background: #999;
+		color: #fff;
+	}
+	.keyword ul li a{
+		color: #000;
+		text-decoration: none;
+	}
+	.keyword ul li:hover a{
+		color: #fff;
+	}
+	body{
+		text-align: center;
+		background: #666;
+	}
+	img{
+		margin-top: 100px;
+	}
+</style>
+<body>
+	<img src="logo_white_fe6da1ec.png" width="220" alt="">
+	<div class="wrapper">
+		<input type="text" id='text'>
+		<input type="submit" value="百度一下">
+	</div>
+	<div class="keyword">
+		<ul>
+		</ul>
+	</div>
+
+	<script>
+
+		var oText = document.getElementById('text'),
+			oKey = document.getElementsByClassName('keyword')[0];
+			oUl = oKey.getElementsByTagName('ul')[0];
+		oText.onkeyup = function () {
+			var val = this.value; //获取文本框的内容
+			/*if (val.length != 0) {
+				oKey.style.display = "block";
+			}else{
+				oKey.style.display = "none";
+			}*/
+			oKey.style.display = val.length != 0 ? "block" : "none";
+			var script = document.createElement("script");
+			script.src = "https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd="+val+"&cb=haha";
+			document.body.appendChild(script);
+		}
+
+		function haha (data) {
+			oUl.innerHTML = "";
+			data.s.forEach(function (el) {
+				var oli = document.createElement("li");
+				oli.innerHTML = '<a href="https://www.baidu.com/s?wd='+el+'">'+el+'</a>'
+				oUl.appendChild(oli);
+			})
+		}
+	</script>
+
+
+</body>
+</html>
